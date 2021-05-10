@@ -26,5 +26,7 @@ GET /api/todo/:id
 }
 ```
 PUT /api/todo/:id
+
 DELETE /api/todo/:id
+
 POST /api/todo
