@@ -7,6 +7,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 @ExtendWith(MockitoExtension.class)
 class ToDoServiceTest {
 
@@ -15,6 +17,13 @@ class ToDoServiceTest {
 
     @Mock
     private ToDoRepository toDoRepository;
+
+    @Test
+    void testToDoServiceConstructor_ShouldThrowNullPointerException_WhenCalledWithNullPointer() {
+
+        assertThrows(NullPointerException.class,
+                () -> new ToDoService(null));
+    }
 
     @Test
     void getTodos() {

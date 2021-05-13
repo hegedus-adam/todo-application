@@ -5,6 +5,7 @@ import com.epam.todo.repository.ToDoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class ToDoService {
@@ -12,6 +13,7 @@ public class ToDoService {
     private final ToDoRepository toDoRepository;
 
     public ToDoService(ToDoRepository toDoRepository) {
+        Objects.requireNonNull(toDoRepository);
         this.toDoRepository = toDoRepository;
     }
 

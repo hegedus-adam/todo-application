@@ -19,7 +19,7 @@ class TodoControllerTest {
     private TodoFacade todoFacade;
 
     @Test
-    void testTodoController_ConstructorShouldThrowNullPointerException_WhenCalledWithNullPointer() {
+    void testTodoControllerConstructor_ShouldThrowNullPointerException_WhenCalledWithNullPointer() {
 
         assertThrows(NullPointerException.class,
                 () -> new TodoController(null));
