@@ -1,9 +1,11 @@
 package com.epam.todo.service;
 
-import com.epam.todo.model.ToDosDto;
+import com.epam.todo.model.ToDo;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class TodoFacade {
@@ -14,7 +16,7 @@ public class TodoFacade {
         this.toDoService = toDoService;
     }
 
-    public ResponseEntity<ToDosDto> getTodos() {
+    public ResponseEntity<List<ToDo>> getTodos() {
         return new ResponseEntity<>(toDoService.getTodos(), HttpStatus.OK);
     }
 }

@@ -1,8 +1,10 @@
 package com.epam.todo.service;
 
-import com.epam.todo.model.ToDosDto;
+import com.epam.todo.model.ToDo;
 import com.epam.todo.repository.ToDoRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ToDoService {
@@ -13,7 +15,7 @@ public class ToDoService {
         this.toDoRepository = toDoRepository;
     }
 
-    public ToDosDto getTodos() {
-        return new ToDosDto(toDoRepository.findAll());
+    public List<ToDo> getTodos() {
+        return toDoRepository.findAll();
     }
 }
