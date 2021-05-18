@@ -3,7 +3,7 @@ package com.epam.todo.model;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.ZonedDateTime;
 import java.util.Objects;
 
 @Entity
@@ -21,14 +21,13 @@ public class ToDo {
     private Boolean isDone;
 
     @Column(name = "creation_timestamp", updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
-    private Date creationTimestamp;
+    private ZonedDateTime creationTimestamp;
 
     public ToDo() {
     }
 
-    public ToDo(int id, String title, Boolean isDone, Date creationTimestamp) {
+    public ToDo(int id, String title, Boolean isDone, ZonedDateTime creationTimestamp) {
         this.id = id;
         this.title = title;
         this.isDone = isDone;
@@ -59,11 +58,11 @@ public class ToDo {
         isDone = done;
     }
 
-    public Date getCreationTimestamp() {
+    public ZonedDateTime getCreationTimestamp() {
         return creationTimestamp;
     }
 
-    public void setCreationTimestamp(Date creationTimestamp) {
+    public void setCreationTimestamp(ZonedDateTime creationTimestamp) {
         this.creationTimestamp = creationTimestamp;
     }
 
