@@ -1,23 +1,21 @@
 package com.epam.todo.service;
 
 import com.epam.todo.model.ToDo;
-import com.epam.todo.repository.ToDoRepository;
+import com.epam.todo.repository.ToDoJpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class ToDoService {
 
-    private final ToDoRepository toDoRepository;
+    private final ToDoJpaRepository toDoJpaRepository;
 
-    public ToDoService(ToDoRepository toDoRepository) {
-        Objects.requireNonNull(toDoRepository);
-        this.toDoRepository = toDoRepository;
+    public ToDoService(ToDoJpaRepository toDoJpaRepository) {
+        this.toDoJpaRepository = toDoJpaRepository;
     }
 
     public List<ToDo> getTodos() {
-        return toDoRepository.findAll();
+        return toDoJpaRepository.findAll();
     }
 }

@@ -1,13 +1,11 @@
 package com.epam.todo.service;
 
-import com.epam.todo.repository.ToDoRepository;
+import com.epam.todo.repository.ToDoJpaRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(MockitoExtension.class)
 class ToDoServiceTest {
@@ -16,14 +14,7 @@ class ToDoServiceTest {
     private ToDoService underTest;
 
     @Mock
-    private ToDoRepository toDoRepository;
-
-    @Test
-    void testToDoServiceConstructor_ShouldThrowNullPointerException_WhenCalledWithNullPointer() {
-
-        assertThrows(NullPointerException.class,
-                () -> new ToDoService(null));
-    }
+    private ToDoJpaRepository toDoJpaRepository;
 
     @Test
     void getTodos() {

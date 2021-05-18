@@ -7,8 +7,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 @ExtendWith(MockitoExtension.class)
 class TodoControllerTest {
 
@@ -17,13 +15,6 @@ class TodoControllerTest {
 
     @Mock
     private TodoFacade todoFacade;
-
-    @Test
-    void testTodoControllerConstructor_ShouldThrowNullPointerException_WhenCalledWithNullPointer() {
-
-        assertThrows(NullPointerException.class,
-                () -> new TodoController(null));
-    }
 
     @Test
     void getToDos() {

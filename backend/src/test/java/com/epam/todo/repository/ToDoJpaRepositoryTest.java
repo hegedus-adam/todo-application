@@ -6,10 +6,10 @@ import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-class ToDoRepositoryTest {
+class ToDoJpaRepositoryTest {
 
     @InjectMocks
-    private ToDoRepository underTest;
+    private ToDoJpaRepository underTest;
 
     @Test
     void findAll() {

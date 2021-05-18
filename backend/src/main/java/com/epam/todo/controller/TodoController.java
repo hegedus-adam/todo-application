@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Objects;
 
 @RestController
 public class TodoController {
@@ -20,7 +19,6 @@ public class TodoController {
     private final TodoFacade todoFacade;
 
     public TodoController(TodoFacade todoFacade) {
-        Objects.requireNonNull(todoFacade);
         this.todoFacade = todoFacade;
     }
 

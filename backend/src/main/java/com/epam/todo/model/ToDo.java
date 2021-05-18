@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "toDo")
+@Table(name = "todos")
 public class ToDo {
 
     @Id
@@ -17,10 +17,10 @@ public class ToDo {
     @Column(name = "title")
     String title;
 
-    @Column(name = "isDone")
+    @Column(name = "is_done")
     private Boolean isDone;
 
-    @Column(name = "creationTimestamp", updatable = false)
+    @Column(name = "creation_timestamp", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     private Date creationTimestamp;
