@@ -33,6 +33,6 @@ public class TodoController {
     })
     @GetMapping("/api/todo")
     public ResponseEntity<List<ToDo>> getToDos() {
-        return todoFacade.getTodos();
+        return todoFacade.getToDos();
     }
 }

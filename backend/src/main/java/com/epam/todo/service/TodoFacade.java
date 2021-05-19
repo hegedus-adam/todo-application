@@ -16,7 +16,7 @@ public class TodoFacade {
         this.toDoService = toDoService;
     }
 
-    public ResponseEntity<List<ToDo>> getTodos() {
-        return new ResponseEntity<>(toDoService.getTodos(), HttpStatus.OK);
+    public ResponseEntity<List<ToDo>> getToDos() {
+        return new ResponseEntity<>(toDoService.getToDos(), HttpStatus.OK);
     }
 }

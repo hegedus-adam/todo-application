@@ -15,7 +15,7 @@ public class ToDoService {
         this.toDoJpaRepository = toDoJpaRepository;
     }
 
-    public List<ToDo> getTodos() {
+    public List<ToDo> getToDos() {
         return toDoJpaRepository.findAll();
     }
 }

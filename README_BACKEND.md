@@ -1,7 +1,5 @@
 ## How to build a Docker container
 
-### mvn package
-
 ### docker build -t todo .
 
 ### docker container run -p 8080:8080 --name todo todo

@@ -23,5 +23,5 @@ FROM openjdk:11-jre-slim
 # Copy the compiled files over.
 COPY --from=build-env /app/target/ /app/
 
-# Starts java app with 8008.
+# Starts java app with port 8080.
 CMD ["java", "-jar", "/app/todo-0.0.1-SNAPSHOT.jar"]
