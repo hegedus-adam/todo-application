@@ -19,4 +19,21 @@ public class TodoFacade {
     public ResponseEntity<List<ToDo>> getToDos() {
         return new ResponseEntity<>(toDoService.getToDos(), HttpStatus.OK);
     }
+
+    public ResponseEntity<ToDo> createToDo(ToDo toDo) {
+        return new ResponseEntity<>(toDoService.createToDo(toDo), HttpStatus.CREATED);
+    }
+
+    public ResponseEntity<ToDo> readToDo(long id) {
+        return new ResponseEntity<>(toDoService.readToDo(id), HttpStatus.OK);
+    }
+
+    public ResponseEntity<ToDo> updateToDo(long id, ToDo toDo) {
+        return new ResponseEntity<>(toDoService.updateToDo(id, toDo), HttpStatus.OK);
+    }
+
+    public ResponseEntity<Long> deleteToDo(long id) {
+        toDoService.deleteToDo(id);
+        return new ResponseEntity(id, HttpStatus.OK);
+    }
 }

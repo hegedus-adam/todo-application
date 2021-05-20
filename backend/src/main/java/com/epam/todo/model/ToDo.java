@@ -11,8 +11,8 @@ import java.util.Objects;
 public class ToDo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    long id;
 
     @Column(name = "title")
     String title;
@@ -27,18 +27,18 @@ public class ToDo {
     public ToDo() {
     }
 
-    public ToDo(int id, String title, Boolean isDone, ZonedDateTime creationTimestamp) {
+    public ToDo(long id, String title, Boolean isDone, ZonedDateTime creationTimestamp) {
         this.id = id;
         this.title = title;
         this.isDone = isDone;
         this.creationTimestamp = creationTimestamp;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
