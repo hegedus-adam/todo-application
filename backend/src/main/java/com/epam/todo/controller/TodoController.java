@@ -73,7 +73,7 @@ public class TodoController {
                     content = @Content(mediaType = "application/json"))
     })
     @PutMapping("/api/todo/{id}")
-    public ResponseEntity updateToDo(@PathVariable("id") long id, @RequestBody ToDo toDo) {
+    public ResponseEntity<ToDo> updateToDo(@PathVariable("id") long id, @RequestBody ToDo toDo) {
         return todoFacade.updateToDo(id, toDo);
     }
 
