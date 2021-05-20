@@ -18,7 +18,10 @@ COPY . ./
 RUN mvn -Dmaven.test.skip=false package
 
 # Build runtime image.
-FROM openjdk:11-jre-slim
+# Free from hub.docker.com with limitation
+# FROM openjdk:11-jre-slim
+# In Production use
+FROM mcr.microsoft.com/java/jre:11u6-zulu-alpine
 
 # Copy the compiled files over.
 COPY --from=build-env /app/target/ /app/
