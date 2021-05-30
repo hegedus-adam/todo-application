@@ -36,44 +36,24 @@ interface Todo {
 * Save new todo:        `POST /api/todo`
 
 ## Bugs
-### POST
-```javascript
-fetch('http://localhost:8080/api/todo', {
-        method: 'POST',
-        body: {
-            isDone: true,
-            title: 'asdf'
-        },
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    })
-        .then(res => res.json())
-        .then(json => console.log(json[0]))
-        .catch(e => console.log(e));
-```
-```
-// log
-2021-05-30 15:24:15.839  WARN 1 --- [nio-8080-exec-5] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize instance of `com.epam.todo.model.ToDo` out of START_ARRAY token; nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `com.epam.todo.model.ToDo` out of START_ARRAY token
-```
-
 ### PUT
 ```javascript
-fetch('http://localhost:8080/api/todo', {
-        method: 'PUT',
-        body: {
-            isDone: true,
-            title: 'asdf'
-        },
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    })
-        .then(res => res.json())
-        .then(json => console.log(json[0]))
-        .catch(e => console.log(e));
+fetch('http://localhost:8080/api/todo/1', {
+    method: 'PUT',
+    body: JSON.stringify({
+        isDone: true,
+        title: 'asdf'
+    }),
+    headers: {
+        'Content-Type': 'application/json'
+    },
+})
+    .then(res => res.json())
+    .then(json => console.log(json))
+    .catch(e => console.log(e));
 ```
 ```
 // log
-2021-05-30 15:26:13.337  WARN 1 --- [nio-8080-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PUT' not supported]
+2021-05-30 15:44:06.083 ERROR 1 --- [nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.util.NoSuchElementException: Id fields are different: 1 0
+] with root cause
 ```
