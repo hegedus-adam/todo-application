@@ -31,6 +31,7 @@ public class TodoController {
                     content = @Content(mediaType = "application/json"))
     })
     @GetMapping("/api/todo")
+    @CrossOrigin(origins = "*")
     public ResponseEntity<List<ToDo>> getToDos() {
         return todoFacade.getToDos();
     }
@@ -45,6 +46,7 @@ public class TodoController {
                     content = @Content(mediaType = "application/json"))
     })
     @PostMapping("/api/todo")
+    @CrossOrigin(origins = "*")
     public ResponseEntity<ToDo> createToDo(@RequestBody ToDo toDo) {
         return todoFacade.createToDo(toDo);
     }
@@ -59,6 +61,7 @@ public class TodoController {
                     content = @Content(mediaType = "application/json"))
     })
     @GetMapping("/api/todo/{id}")
+    @CrossOrigin(origins = "*")
     public ResponseEntity<ToDo> readToDo(@PathVariable(name = "id") long id) {
         return todoFacade.readToDo(id);
     }
@@ -73,6 +76,7 @@ public class TodoController {
                     content = @Content(mediaType = "application/json"))
     })
     @PutMapping("/api/todo/{id}")
+    @CrossOrigin(origins = "*")
     public ResponseEntity<ToDo> updateToDo(@PathVariable("id") long id, @RequestBody ToDo toDo) {
         return todoFacade.updateToDo(id, toDo);
     }
@@ -87,6 +91,7 @@ public class TodoController {
                     content = @Content(mediaType = "application/json"))
     })
     @DeleteMapping("/api/todo/{id}")
+    @CrossOrigin(origins = "*")
     public ResponseEntity<Long> deleteToDo(@PathVariable(name = "id") long id) {
         return todoFacade.deleteToDo(id);
     }
