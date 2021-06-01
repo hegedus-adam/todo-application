@@ -37,8 +37,6 @@ public class ToDoService {
     }
 
     public ToDo updateToDo(long id, ToDo toDo) {
-        checkIds(id, toDo);
-
         Optional<ToDo> result = toDoJpaRepository.findById(id);
         if (result.isPresent()) {
             toDo.setCreationTimestamp(result.get().getCreationTimestamp());
@@ -47,12 +45,6 @@ public class ToDoService {
             throw new NoSuchElementException("Id parameter is not valid: " + id);
         }
         return toDo;
-    }
-
-    private void checkIds(long id, ToDo toDo) {
-        if (id != toDo.getId()) {
-            throw new NoSuchElementException(String.format("Id fields are different: %d %d%n", id, toDo.getId()));
-        }
     }
 
     public void deleteToDo(long id) {

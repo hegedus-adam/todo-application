@@ -134,16 +134,6 @@ class ToDoServiceTest {
     }
 
     @Test
-    void testUpdateToDo_ShouldCalledRepositoryAndThrowException_WhenCalledWithInValidIds() {
-        //given
-        ToDo updated = new ToDo(2, "Going to cinema.", false, ZonedDateTime.parse("2010-05-27T08:05:03Z"));
-        //when
-        assertThrows(NoSuchElementException.class, () -> {
-            underTest.updateToDo(1L, updated);
-        });
-    }
-
-    @Test
     void testDeleteToDo_ShouldCalledRepositoryAndReturnVoid_WhenCalledWithValidId() {
         //given
         when(toDoJpaRepository.findById(1L)).thenReturn(Optional.of(item1));
