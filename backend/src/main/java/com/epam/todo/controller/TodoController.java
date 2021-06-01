@@ -2,6 +2,7 @@ package com.epam.todo.controller;
 
 
 import com.epam.todo.model.ToDo;
+import com.epam.todo.model.UpdateToDo;
 import com.epam.todo.service.TodoFacade;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -73,8 +74,8 @@ public class TodoController {
                     content = @Content(mediaType = "application/json"))
     })
     @PutMapping("/api/todo/{id}")
-    public ResponseEntity<ToDo> updateToDo(@PathVariable("id") long id, @RequestBody ToDo toDo) {
-        return todoFacade.updateToDo(id, toDo);
+    public ResponseEntity<ToDo> updateToDo(@PathVariable("id") long id, @RequestBody UpdateToDo updateToDo) {
+        return todoFacade.updateToDo(id, updateToDo.createToDo(id));
     }
 
     @Operation(summary = "Delete todo by id from database")

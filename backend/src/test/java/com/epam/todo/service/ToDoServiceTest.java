@@ -108,6 +108,21 @@ class ToDoServiceTest {
     }
 
     @Test
+    void testUpdateToDo_ShouldCalledRepositoryAndSetCreationTimeStamp_WhenCalledWithInValidIds() {
+        //given
+        ToDo updated = new ToDo(1, "Going to cinema.", false, null);
+        ToDo updatedWithTimeStamp = new ToDo(1, "Going to cinema.", false, ZonedDateTime.parse("2020-12-08T22:27:16Z"));
+        when(toDoJpaRepository.findById(1L)).thenReturn(Optional.of(item1));
+        when(toDoJpaRepository.save(updatedWithTimeStamp)).thenReturn(updatedWithTimeStamp);
+        //when
+        ToDo actual = underTest.updateToDo(1L, updated);
+        //then
+        assertEquals(updatedWithTimeStamp, actual);
+        verify(toDoJpaRepository).findById(1L);
+        verify(toDoJpaRepository).save(updatedWithTimeStamp);
+    }
+
+    @Test
     void testUpdateToDo_ShouldCalledRepositoryAndThrowException_WhenCalledWithInValidIdAndToDo() {
         //given
         ToDo updated = new ToDo(1, "Going to cinema.", false, ZonedDateTime.parse("2010-05-27T08:05:03Z"));

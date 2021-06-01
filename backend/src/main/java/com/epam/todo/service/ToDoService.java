@@ -41,6 +41,7 @@ public class ToDoService {
 
         Optional<ToDo> result = toDoJpaRepository.findById(id);
         if (result.isPresent()) {
+            toDo.setCreationTimestamp(result.get().getCreationTimestamp());
             toDo = toDoJpaRepository.save(toDo);
         } else {
             throw new NoSuchElementException("Id parameter is not valid: " + id);

@@ -34,6 +34,12 @@ public class ToDo {
         this.creationTimestamp = creationTimestamp;
     }
 
+    public ToDo(long id, String title, Boolean isDone) {
+        this.id = id;
+        this.title = title;
+        this.isDone = isDone;
+    }
+
     public long getId() {
         return id;
     }

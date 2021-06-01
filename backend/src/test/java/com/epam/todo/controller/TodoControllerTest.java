@@ -1,6 +1,7 @@
 package com.epam.todo.controller;
 
 import com.epam.todo.model.ToDo;
+import com.epam.todo.model.UpdateToDo;
 import com.epam.todo.service.TodoFacade;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -85,16 +86,17 @@ class TodoControllerTest {
     @Test
     void testUpdateToDo_ShouldCalledFacadeAndReturnUpdatedTodo_WhenCalledWithValidIdAndToDo() {
         //given
-        ToDo updated = new ToDo(1, "Going to cinema.", false, ZonedDateTime.parse("2010-05-27T08:05:03Z"));
-        ToDo afterUpdated = new ToDo(1, "Going to cinema.", false, ZonedDateTime.parse("2020-12-08T22:27:16Z"));
-        when(todoFacade.updateToDo(1L, updated)).thenReturn(new ResponseEntity<>(afterUpdated, HttpStatus.OK));
+        UpdateToDo updated = new UpdateToDo("Going to cinema.", false);
+        ToDo toDo = new ToDo(1, "Going to cinema.", false, null);
+
+        when(todoFacade.updateToDo(1L, toDo)).thenReturn(new ResponseEntity<>(toDo, HttpStatus.OK));
         //when
         ResponseEntity<ToDo> actual = underTest.updateToDo(1L, updated);
         //then
-        ResponseEntity<ToDo> expected = new ResponseEntity<>(afterUpdated, HttpStatus.OK);
+        ResponseEntity<ToDo> expected = new ResponseEntity<>(toDo, HttpStatus.OK);
 
         assertEquals(expected, actual);
-        verify(todoFacade).updateToDo(1L, updated);
+        verify(todoFacade).updateToDo(1L, toDo);
     }
 
     @Test
