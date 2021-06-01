@@ -3,6 +3,7 @@ package com.epam.todo.controller;
 
 import com.epam.todo.model.ToDo;
 import com.epam.todo.model.UpdateToDo;
+import com.epam.todo.model.UpdateToDo;
 import com.epam.todo.service.TodoFacade;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -32,6 +33,7 @@ public class TodoController {
                     content = @Content(mediaType = "application/json"))
     })
     @GetMapping("/api/todo")
+    @CrossOrigin(origins = "*")
     public ResponseEntity<List<ToDo>> getToDos() {
         return todoFacade.getToDos();
     }
@@ -46,6 +48,7 @@ public class TodoController {
                     content = @Content(mediaType = "application/json"))
     })
     @PostMapping("/api/todo")
+    @CrossOrigin(origins = "*")
     public ResponseEntity<ToDo> createToDo(@RequestBody ToDo toDo) {
         return todoFacade.createToDo(toDo);
     }
@@ -60,6 +63,7 @@ public class TodoController {
                     content = @Content(mediaType = "application/json"))
     })
     @GetMapping("/api/todo/{id}")
+    @CrossOrigin(origins = "*")
     public ResponseEntity<ToDo> readToDo(@PathVariable(name = "id") long id) {
         return todoFacade.readToDo(id);
     }
@@ -74,6 +78,7 @@ public class TodoController {
                     content = @Content(mediaType = "application/json"))
     })
     @PutMapping("/api/todo/{id}")
+    @CrossOrigin(origins = "*")
     public ResponseEntity<ToDo> updateToDo(@PathVariable("id") long id, @RequestBody UpdateToDo updateToDo) {
         return todoFacade.updateToDo(id, updateToDo.createToDo(id));
     }
@@ -88,6 +93,7 @@ public class TodoController {
                     content = @Content(mediaType = "application/json"))
     })
     @DeleteMapping("/api/todo/{id}")
+    @CrossOrigin(origins = "*")
     public ResponseEntity<Long> deleteToDo(@PathVariable(name = "id") long id) {
         return todoFacade.deleteToDo(id);
     }
