@@ -1,8 +1,6 @@
 package com.epam.todo.controller;
 
-
 import com.epam.todo.model.ToDo;
-import com.epam.todo.model.UpdateToDo;
 import com.epam.todo.model.UpdateToDo;
 import com.epam.todo.service.TodoFacade;
 import io.swagger.v3.oas.annotations.Operation;
@@ -17,84 +15,64 @@ import java.util.List;
 @RestController
 public class TodoController {
 
-    private final TodoFacade todoFacade;
+  private final TodoFacade todoFacade;
 
-    public TodoController(TodoFacade todoFacade) {
-        this.todoFacade = todoFacade;
-    }
+  public TodoController(TodoFacade todoFacade) {
+    this.todoFacade = todoFacade;
+  }
 
-    @Operation(summary = "Download all todos from database")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
-                    description = "Given back todos list",
-                    content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode = "404",
-                    description = "Not available",
-                    content = @Content(mediaType = "application/json"))
-    })
-    @GetMapping("/api/todo")
-    @CrossOrigin(origins = "*")
-    public ResponseEntity<List<ToDo>> getToDos() {
-        return todoFacade.getToDos();
-    }
+  @Operation(summary = "Download all todos from database")
+  @ApiResponses(value = {
+    @ApiResponse(responseCode = "200", description = "Given back todos list", content = {@Content(mediaType = "application/json")}),
+    @ApiResponse(responseCode = "404", description = "Not available", content = @Content(mediaType = "application/json"))
+  })
+  @GetMapping("/api/todo")
+  @CrossOrigin(origins = "*")
+  public ResponseEntity<List<ToDo>> getToDos() {
+    return todoFacade.getToDos();
+  }
 
-    @Operation(summary = "Create new todo in database")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "201",
-                    description = "Create todo by id",
-                    content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode = "404",
-                    description = "Not available",
-                    content = @Content(mediaType = "application/json"))
-    })
-    @PostMapping("/api/todo")
-    @CrossOrigin(origins = "*")
-    public ResponseEntity<ToDo> createToDo(@RequestBody ToDo toDo) {
-        return todoFacade.createToDo(toDo);
-    }
+  @Operation(summary = "Create new todo in database")
+  @ApiResponses(value = {
+    @ApiResponse(responseCode = "201", description = "Create todo by id", content = {@Content(mediaType = "application/json")}),
+    @ApiResponse(responseCode = "404", description = "Not available", content = @Content(mediaType = "application/json"))
+  })
+  @PostMapping("/api/todo")
+  @CrossOrigin(origins = "*")
+  public ResponseEntity<ToDo> createToDo(@RequestBody ToDo toDo) {
+    return todoFacade.createToDo(toDo);
+  }
 
-    @Operation(summary = "Read todo by id from database")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
-                    description = "Given back todo by id",
-                    content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode = "404",
-                    description = "Not available",
-                    content = @Content(mediaType = "application/json"))
-    })
-    @GetMapping("/api/todo/{id}")
-    @CrossOrigin(origins = "*")
-    public ResponseEntity<ToDo> readToDo(@PathVariable(name = "id") long id) {
-        return todoFacade.readToDo(id);
-    }
+  @Operation(summary = "Read todo by id from database")
+  @ApiResponses(value = {
+    @ApiResponse(responseCode = "200", description = "Given back todo by id", content = {@Content(mediaType = "application/json")}),
+    @ApiResponse(responseCode = "404", description = "Not available", content = @Content(mediaType = "application/json"))
+  })
+  @GetMapping("/api/todo/{id}")
+  @CrossOrigin(origins = "*")
+  public ResponseEntity<ToDo> readToDo(@PathVariable(name = "id") long id) {
+    return todoFacade.readToDo(id);
+  }
 
-    @Operation(summary = "Update todo by id in database")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
-                    description = "Update todo by id",
-                    content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode = "404",
-                    description = "Not available",
-                    content = @Content(mediaType = "application/json"))
-    })
-    @PutMapping("/api/todo/{id}")
-    @CrossOrigin(origins = "*")
-    public ResponseEntity<ToDo> updateToDo(@PathVariable("id") long id, @RequestBody UpdateToDo updateToDo) {
-        return todoFacade.updateToDo(id, updateToDo.createToDo(id));
-    }
+  @Operation(summary = "Update todo by id in database")
+  @ApiResponses(value = {
+    @ApiResponse(responseCode = "200", description = "Update todo by id", content = {@Content(mediaType = "application/json")}),
+    @ApiResponse(responseCode = "404", description = "Not available", content = @Content(mediaType = "application/json"))
+  })
+  @PutMapping("/api/todo/{id}")
+  @CrossOrigin(origins = "*")
+  public ResponseEntity<ToDo> updateToDo(@PathVariable("id") long id, @RequestBody UpdateToDo updateToDo) {
+    return todoFacade.updateToDo(id, updateToDo.createToDo(id));
+  }
 
-    @Operation(summary = "Delete todo by id from database")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
-                    description = "Delete todo by id",
-                    content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode = "404",
-                    description = "Not available",
-                    content = @Content(mediaType = "application/json"))
-    })
-    @DeleteMapping("/api/todo/{id}")
-    @CrossOrigin(origins = "*")
-    public ResponseEntity<Long> deleteToDo(@PathVariable(name = "id") long id) {
-        return todoFacade.deleteToDo(id);
-    }
+  @Operation(summary = "Delete todo by id from database")
+  @ApiResponses(value = {
+    @ApiResponse(responseCode = "200", description = "Delete todo by id", content = {@Content(mediaType = "application/json")}),
+    @ApiResponse(responseCode = "404", description = "Not available", content = @Content(mediaType = "application/json"))
+  })
+  @DeleteMapping("/api/todo/{id}")
+  @CrossOrigin(origins = "*")
+  public ResponseEntity<Long> deleteToDo(@PathVariable(name = "id") long id) {
+    return todoFacade.deleteToDo(id);
+  }
 }
