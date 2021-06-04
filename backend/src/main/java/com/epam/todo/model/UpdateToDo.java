@@ -6,58 +6,59 @@ import java.util.Objects;
 
 public class UpdateToDo {
 
-    @JsonProperty("title")
-    String title;
-    
-    @JsonProperty("isDone")
-    private Boolean isDone;
+  @JsonProperty("title")
+  String title;
 
-    public UpdateToDo() {
-    }
+  @JsonProperty("isDone")
+  private Boolean isDone;
 
-    public UpdateToDo(String title, Boolean isDone) {
-        this.title = title;
-        this.isDone = isDone;
-    }
+  public UpdateToDo() {
+  }
 
-    public String getTitle() {
-        return title;
-    }
+  public UpdateToDo(String title, Boolean isDone) {
+    this.title = title;
+    this.isDone = isDone;
+  }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+  public String getTitle() {
+    return title;
+  }
 
-    public Boolean getDone() {
-        return isDone;
-    }
+  public void setTitle(String title) {
+    this.title = title;
+  }
 
-    public void setDone(Boolean done) {
-        isDone = done;
-    }
+  public Boolean getDone() {
+    return isDone;
+  }
 
-    public ToDo createToDo(long id) {
-        return new ToDo(id, title, isDone);
-    }
+  public void setDone(Boolean done) {
+    isDone = done;
+  }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        UpdateToDo that = (UpdateToDo) o;
-        return Objects.equals(title, that.title) && Objects.equals(isDone, that.isDone);
-    }
+  public ToDo createToDo(long id) {
+    return new ToDo(id, title, isDone);
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(title, isDone);
-    }
+  @Override
+  public boolean equals(Object o) {
+      if (this == o) {
+          return true;
+      }
+      if (o == null || getClass() != o.getClass()) {
+          return false;
+      }
+    UpdateToDo that = (UpdateToDo) o;
+    return Objects.equals(title, that.title) && Objects.equals(isDone, that.isDone);
+  }
 
-    @Override
-    public String toString() {
-        return "UpdateToDo{" +
-                "title='" + title + '\'' +
-                ", isDone=" + isDone +
-                '}';
-    }
+  @Override
+  public int hashCode() {
+    return Objects.hash(title, isDone);
+  }
+
+  @Override
+  public String toString() {
+    return "UpdateToDo{" + "title='" + title + '\'' + ", isDone=" + isDone + '}';
+  }
 }
