@@ -1,3 +1,8 @@
+#### Before building docker container stop and delete old container:
+
+docker rm todo<br/>
+docker rmi todo
+
 ## How to build a Docker container
 
 ### docker build -t todo .
