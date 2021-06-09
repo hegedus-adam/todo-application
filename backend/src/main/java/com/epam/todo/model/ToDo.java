@@ -4,7 +4,6 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
-import java.util.Objects;
 
 @Entity
 @Table(name = "todos")
@@ -12,7 +11,7 @@ public class ToDo {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  long id;
+  String id;
 
   @Column(name = "title")
   String title;
@@ -27,24 +26,24 @@ public class ToDo {
   public ToDo() {
   }
 
-  public ToDo(long id, String title, Boolean isDone, ZonedDateTime creationTimestamp) {
+  public ToDo(String id, String title, Boolean isDone, ZonedDateTime creationTimestamp) {
     this.id = id;
     this.title = title;
     this.isDone = isDone;
     this.creationTimestamp = creationTimestamp;
   }
 
-  public ToDo(long id, String title, Boolean isDone) {
+  public ToDo(String id, String title, Boolean isDone) {
     this.id = id;
     this.title = title;
     this.isDone = isDone;
   }
 
-  public long getId() {
+  public String getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(String id) {
     this.id = id;
   }
 
@@ -80,19 +79,12 @@ public class ToDo {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ToDo toDo = (ToDo) o;
-    return id == toDo.id && Objects.equals(title, toDo.title) && Objects.equals(isDone, toDo.isDone) && Objects.equals(creationTimestamp,
-                                                                                                                       toDo.creationTimestamp
-    );
+    com.epam.todo.model.ToDo toDo = (com.epam.todo.model.ToDo) o;
+    return id.equals(toDo.id) && title.equals(toDo.title) && isDone.equals(toDo.isDone) && creationTimestamp.equals(toDo.creationTimestamp);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, title, isDone, creationTimestamp);
-  }
-
-  @Override
-  public String toString() {
-    return "ToDo{" + "id=" + id + ", title='" + title + '\'' + ", isDone=" + isDone + ", creationTimestamp=" + creationTimestamp + '}';
+    return java.util.Objects.hash(id, title, isDone, creationTimestamp);
   }
 }
