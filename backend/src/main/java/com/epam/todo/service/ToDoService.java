@@ -25,7 +25,7 @@ public class ToDoService {
     return toDoJpaRepository.save(toDo);
   }
 
-  public ToDo readToDo(long id) {
+  public ToDo readToDo(String id) {
     Optional<ToDo> result = toDoJpaRepository.findById(id);
     ToDo toDo;
     if (result.isPresent()) {
@@ -36,7 +36,7 @@ public class ToDoService {
     return toDo;
   }
 
-  public ToDo updateToDo(long id, ToDo toDo) {
+  public ToDo updateToDo(String id, ToDo toDo) {
     Optional<ToDo> result = toDoJpaRepository.findById(id);
     if (result.isPresent()) {
       toDo.setCreationTimestamp(result.get().getCreationTimestamp());
@@ -47,7 +47,7 @@ public class ToDoService {
     return toDo;
   }
 
-  public void deleteToDo(long id) {
+  public void deleteToDo(String id) {
     Optional<ToDo> result = toDoJpaRepository.findById(id);
     ToDo toDo;
     if (result.isPresent()) {

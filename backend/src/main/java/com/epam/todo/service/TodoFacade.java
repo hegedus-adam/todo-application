@@ -16,6 +16,10 @@ public class TodoFacade {
     this.toDoService = toDoService;
   }
 
+  public ResponseEntity<null> invalidParameters() {
+    return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+  }
+
   public ResponseEntity<List<ToDo>> getToDos() {
     return new ResponseEntity<>(toDoService.getToDos(), HttpStatus.OK);
   }
@@ -24,15 +28,15 @@ public class TodoFacade {
     return new ResponseEntity<>(toDoService.createToDo(toDo), HttpStatus.CREATED);
   }
 
-  public ResponseEntity<ToDo> readToDo(long id) {
+  public ResponseEntity<ToDo> readToDo(String id) {
     return new ResponseEntity<>(toDoService.readToDo(id), HttpStatus.OK);
   }
 
-  public ResponseEntity<ToDo> updateToDo(long id, ToDo toDo) {
+  public ResponseEntity<ToDo> updateToDo(String id, ToDo toDo) {
     return new ResponseEntity<>(toDoService.updateToDo(id, toDo), HttpStatus.OK);
   }
 
-  public ResponseEntity<Long> deleteToDo(long id) {
+  public ResponseEntity<String> deleteToDo(String id) {
     toDoService.deleteToDo(id);
     return new ResponseEntity(id, HttpStatus.OK);
   }

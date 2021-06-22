@@ -36,29 +36,24 @@ public class UpdateToDo {
     isDone = done;
   }
 
-  public ToDo createToDo(long id) {
+  public ToDo createToDo(String id) {
     return new ToDo(id, title, isDone);
   }
 
   @Override
   public boolean equals(Object o) {
-      if (this == o) {
-          return true;
-      }
-      if (o == null || getClass() != o.getClass()) {
-          return false;
-      }
-    UpdateToDo that = (UpdateToDo) o;
-    return Objects.equals(title, that.title) && Objects.equals(isDone, that.isDone);
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    com.epam.todo.model.UpdateToDo that = (com.epam.todo.model.UpdateToDo) o;
+    return java.util.Objects.equals(title, that.title) && java.util.Objects.equals(isDone, that.isDone);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(title, isDone);
-  }
-
-  @Override
-  public String toString() {
-    return "UpdateToDo{" + "title='" + title + '\'' + ", isDone=" + isDone + '}';
+    return java.util.Objects.hash(title, isDone);
   }
 }

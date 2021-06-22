@@ -26,7 +26,7 @@ public class TodoController {
     @ApiResponse(responseCode = "200", description = "Given back todos list", content = {@Content(mediaType = "application/json")}),
     @ApiResponse(responseCode = "404", description = "Not available", content = @Content(mediaType = "application/json"))
   })
-  @GetMapping("/api/todo")
+  @GetMapping("/api/todos")
   @CrossOrigin(origins = "*")
   public ResponseEntity<List<ToDo>> getToDos() {
     return todoFacade.getToDos();
@@ -37,7 +37,7 @@ public class TodoController {
     @ApiResponse(responseCode = "201", description = "Create todo by id", content = {@Content(mediaType = "application/json")}),
     @ApiResponse(responseCode = "404", description = "Not available", content = @Content(mediaType = "application/json"))
   })
-  @PostMapping("/api/todo")
+  @PostMapping("/api/todos")
   @CrossOrigin(origins = "*")
   public ResponseEntity<ToDo> createToDo(@RequestBody ToDo toDo) {
     return todoFacade.createToDo(toDo);
@@ -48,10 +48,19 @@ public class TodoController {
     @ApiResponse(responseCode = "200", description = "Given back todo by id", content = {@Content(mediaType = "application/json")}),
     @ApiResponse(responseCode = "404", description = "Not available", content = @Content(mediaType = "application/json"))
   })
-  @GetMapping("/api/todo/{id}")
+  @GetMapping("/api/todos/{id}")
   @CrossOrigin(origins = "*")
-  public ResponseEntity<ToDo> readToDo(@PathVariable(name = "id") long id) {
-    return todoFacade.readToDo(id);
+  public ResponseEntity<ToDo> readToDo(@PathVariable(name = "id") String id) {
+    String regex = "^[a-zA-Z0-9]+$";
+    Pattern pattern = Pattern.compile(regex);
+    Matcher matcher = pattern.matcher(id);
+
+    if (matcher.matches()) {
+      return todoFacade.readToDo(id);
+    } else {
+      return todoFacade.invalidParameters();
+    }
+    
   }
 
   @Operation(summary = "Update todo by id in database")
@@ -59,9 +68,9 @@ public class TodoController {
     @ApiResponse(responseCode = "200", description = "Update todo by id", content = {@Content(mediaType = "application/json")}),
     @ApiResponse(responseCode = "404", description = "Not available", content = @Content(mediaType = "application/json"))
   })
-  @PutMapping("/api/todo/{id}")
+  @PutMapping("/api/todos/{id}")
   @CrossOrigin(origins = "*")
-  public ResponseEntity<ToDo> updateToDo(@PathVariable("id") long id, @RequestBody UpdateToDo updateToDo) {
+  public ResponseEntity<ToDo> updateToDo(@PathVariable("id") String id, @RequestBody UpdateToDo updateToDo) {
     return todoFacade.updateToDo(id, updateToDo.createToDo(id));
   }
 
@@ -70,9 +79,9 @@ public class TodoController {
     @ApiResponse(responseCode = "200", description = "Delete todo by id", content = {@Content(mediaType = "application/json")}),
     @ApiResponse(responseCode = "404", description = "Not available", content = @Content(mediaType = "application/json"))
   })
-  @DeleteMapping("/api/todo/{id}")
+  @DeleteMapping("/api/todos/{id}")
   @CrossOrigin(origins = "*")
-  public ResponseEntity<Long> deleteToDo(@PathVariable(name = "id") long id) {
+  public ResponseEntity<String> deleteToDo(@PathVariable(name = "id") String id) {
     return todoFacade.deleteToDo(id);
   }
 }
