@@ -51,7 +51,16 @@ public class TodoController {
   @GetMapping("/api/todos/{id}")
   @CrossOrigin(origins = "*")
   public ResponseEntity<ToDo> readToDo(@PathVariable(name = "id") String id) {
-    return todoFacade.readToDo(id);
+    String regex = "^[a-zA-Z0-9]+$";
+    Pattern pattern = Pattern.compile(regex);
+    Matcher matcher = pattern.matcher(id);
+
+    if (matcher.matches()) {
+      return todoFacade.readToDo(id);
+    } else {
+      return todoFacade.invalidParameters();
+    }
+    
   }
 
   @Operation(summary = "Update todo by id in database")

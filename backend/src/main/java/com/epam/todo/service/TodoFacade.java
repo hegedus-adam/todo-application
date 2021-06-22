@@ -16,6 +16,10 @@ public class TodoFacade {
     this.toDoService = toDoService;
   }
 
+  public ResponseEntity<null> invalidParameters() {
+    return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+  }
+
   public ResponseEntity<List<ToDo>> getToDos() {
     return new ResponseEntity<>(toDoService.getToDos(), HttpStatus.OK);
   }
